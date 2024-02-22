@@ -1,5 +1,12 @@
-import createHtmlEL from './createEl.js';
 console.log('Hello from ts');
-const h1 = createHtmlEL('h1', { class: 'title', href: '/' }, 'Hello world');
-document.body.prepend(h1);
+class Book {
+    constructor(title, author, isbn) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+    }
+}
+const b1 = new Book('Aplink pasauli', 'Z. Varnas', 542874);
+console.log('b1 ===', b1);
+export {};
 //# sourceMappingURL=app.js.map
