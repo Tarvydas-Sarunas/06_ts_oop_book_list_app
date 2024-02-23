@@ -4,6 +4,10 @@ class UI {
         UI.render();
     }
     static render() {
+        const tableBodyEl = document.getElementById('book-list');
+        if (tableBodyEl === null)
+            return console.warn('nerastas elementas');
+        tableBodyEl.innerHTML = '';
         UI.booksArr.forEach((bObj) => UI.createAndAppendOneRow(bObj));
     }
     static createAndAppendOneRow(book) {
@@ -14,6 +18,7 @@ class UI {
         const col3 = createHtmlEL('td', {}, book.isbn.toString());
         const col4 = createHtmlEL('td', {});
         const delBtn = createHtmlEL('button', { class: 'btn btn-danger btn-sm' }, 'X');
+        delBtn.addEventListener('click', () => UI.deleteBook(book));
         col4.append(delBtn);
         trEl.append(col1, col2, col3, col4);
         if (tableBodyEl === null)
@@ -23,8 +28,14 @@ class UI {
     static addBook(book) {
         UI.booksArr.push(book);
         console.table(UI.booksArr);
+        UI.render();
     }
-    static deleteBook(book) { }
+    static deleteBook(book) {
+        console.log('book ===', book);
+        const isbnToDelele = book.isbn;
+        UI.booksArr = UI.booksArr.filter((bObj) => bObj.isbn !== isbnToDelele);
+        UI.render();
+    }
 }
 UI.booksArr = [
     {
@@ -38,7 +49,7 @@ UI.booksArr = [
         isbn: 111111,
     },
     {
-        title: 'Book Two',
+        title: 'Book Three',
         author: 'Serbentautas Doe',
         isbn: 222222,
     },
