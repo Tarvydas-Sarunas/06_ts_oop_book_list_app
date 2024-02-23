@@ -54,6 +54,7 @@ export default class UI {
     UI.booksArr.push(book);
     console.table(UI.booksArr);
     UI.render();
+    new MyAlert('Add success', 'success');
   }
 
   private static deleteBook(book: BookIntereface): void {
@@ -64,6 +65,8 @@ export default class UI {
     //  2 sugeneruoti sarasa is naujo
     UI.render();
     // iskviesti alert kad knyga istrinta
+
+    // Atspausdinti knygos title kuri istrinta
     new MyAlert('Delete success', 'danger');
   }
 }

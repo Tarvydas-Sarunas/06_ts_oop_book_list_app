@@ -30,6 +30,7 @@ class UI {
         UI.booksArr.push(book);
         console.table(UI.booksArr);
         UI.render();
+        new MyAlert('Add success', 'success');
     }
     static deleteBook(book) {
         console.log('book ===', book);
