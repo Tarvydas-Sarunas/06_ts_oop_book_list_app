@@ -1,4 +1,5 @@
 import createHtmlEL from '../helper/createEl.js';
+import MyAlert from './myAlertClass.js';
 class UI {
     static showBooks() {
         UI.render();
@@ -35,6 +36,7 @@ class UI {
         const isbnToDelele = book.isbn;
         UI.booksArr = UI.booksArr.filter((bObj) => bObj.isbn !== isbnToDelele);
         UI.render();
+        new MyAlert('Delete success', 'danger');
     }
 }
 UI.booksArr = [

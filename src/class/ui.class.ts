@@ -1,5 +1,6 @@
 import createHtmlEL from '../helper/createEl.js';
 import { BookIntereface } from '../interface/inteface.js';
+import MyAlert from './myAlertClass.js';
 
 export default class UI {
   private static booksArr: BookIntereface[] = [
@@ -48,6 +49,7 @@ export default class UI {
     tableBodyEl.append(trEl);
   }
 
+  // TODO handle same id problem
   public static addBook(book: BookIntereface): void {
     UI.booksArr.push(book);
     console.table(UI.booksArr);
@@ -62,5 +64,6 @@ export default class UI {
     //  2 sugeneruoti sarasa is naujo
     UI.render();
     // iskviesti alert kad knyga istrinta
+    new MyAlert('Delete success', 'danger');
   }
 }
