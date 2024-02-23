@@ -51,22 +51,33 @@ export default class UI {
 
   // TODO handle same id problem
   public static addBook(book: BookIntereface): void {
-    UI.booksArr.push(book);
-    console.table(UI.booksArr);
-    UI.render();
-    new MyAlert('Add success', 'success');
+    const bookFind = UI.booksArr.find((bObj) => bObj.isbn === book.isbn);
+    if (bookFind) {
+      new MyAlert('Toks ISBN jau yra', 'warning');
+    } else {
+      UI.booksArr.push(book);
+      console.table(UI.booksArr);
+      UI.render();
+      new MyAlert('Add success', 'success');
+    }
   }
 
   private static deleteBook(book: BookIntereface): void {
     console.log('book ===', book);
-    // 1 istrinti is musu knygu masyvo knyga kuri sutampa su book (isbn)
     const isbnToDelele = book.isbn;
-    UI.booksArr = UI.booksArr.filter((bObj) => bObj.isbn !== isbnToDelele);
-    //  2 sugeneruoti sarasa is naujo
-    UI.render();
-    // iskviesti alert kad knyga istrinta
 
-    // Atspausdinti knygos title kuri istrinta
-    new MyAlert('Delete success', 'danger');
+    //  2 sugeneruoti sarasa is naujo
+    const istrinta = UI.booksArr.find((bObj) => bObj.isbn === isbnToDelele);
+
+    // 1 istrinti is musu knygu masyvo knyga kuri sutampa su book (isbn)
+    UI.booksArr = UI.booksArr.filter((bObj) => bObj.isbn !== isbnToDelele);
+
+    // iskviesti alert kad knyga istrinta
+    // Atspausdinti knygos title kuri istrinta atvaizduoti kokia knyga buvo istrinta su jos pavadinimu
+    if (!istrinta) return;
+    new MyAlert(`Book ${istrinta.title} delete success `, 'danger');
+
+    // atnaujinti sarasa
+    UI.render();
   }
 }

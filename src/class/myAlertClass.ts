@@ -4,7 +4,11 @@ type AlertType = 'success' | 'danger' | 'warning';
 
 export default class MyAlert {
   constructor(public message: string, public type: AlertType) {
-    const alertEl = createHtmlEL<HTMLDivElement>('div', { class: `alert alert-${type} my-alert position-absolute w-100 `, role: 'alert' }, message);
+    this.render();
+  }
+
+  public render() {
+    const alertEl = createHtmlEL<HTMLDivElement>('div', { class: `alert alert-${this.type} my-alert position-absolute w-100 `, role: 'alert' }, this.message);
     document.body.prepend(alertEl);
 
     setTimeout(() => {

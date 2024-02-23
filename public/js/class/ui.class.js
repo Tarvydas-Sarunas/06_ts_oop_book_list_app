@@ -27,17 +27,26 @@ class UI {
         tableBodyEl.append(trEl);
     }
     static addBook(book) {
-        UI.booksArr.push(book);
-        console.table(UI.booksArr);
-        UI.render();
-        new MyAlert('Add success', 'success');
+        const bookFind = UI.booksArr.find((bObj) => bObj.isbn === book.isbn);
+        if (bookFind) {
+            new MyAlert('Toks ISBN jau yra', 'warning');
+        }
+        else {
+            UI.booksArr.push(book);
+            console.table(UI.booksArr);
+            UI.render();
+            new MyAlert('Add success', 'success');
+        }
     }
     static deleteBook(book) {
         console.log('book ===', book);
         const isbnToDelele = book.isbn;
+        const istrinta = UI.booksArr.find((bObj) => bObj.isbn === isbnToDelele);
         UI.booksArr = UI.booksArr.filter((bObj) => bObj.isbn !== isbnToDelele);
+        if (!istrinta)
+            return;
+        new MyAlert(`Book ${istrinta.title} delete success `, 'danger');
         UI.render();
-        new MyAlert('Delete success', 'danger');
     }
 }
 UI.booksArr = [
