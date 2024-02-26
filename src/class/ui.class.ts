@@ -6,12 +6,16 @@ import BookApp from './bookApp.class.js';
 export default class UI {
   public static render(booksArr: BookInterface[]): void {
     // issivalom konteineri pries generuojant
-    const tabelBodyEl = document.getElementById('book-list') as HTMLTableSectionElement | null;
-    if (tabelBodyEl === null) return console.warn('nerastas tabelBodyEl ');
-    tabelBodyEl.innerHTML = '';
+    UI.clearContainer();
     // sukti cikla per knygas
     // surasyti jas i html
     booksArr.forEach((bookObj) => UI.createAndAppendOneRow(bookObj));
+  }
+
+  private static clearContainer() {
+    const tabelBodyEl = document.getElementById('book-list') as HTMLTableSectionElement | null;
+    if (tabelBodyEl === null) return console.warn('nerastas tabelBodyEl ');
+    tabelBodyEl.innerHTML = '';
   }
 
   private static createAndAppendOneRow(book: BookInterface): void {

@@ -2,11 +2,14 @@ import createHtmlEL from '../helper/createEl.js';
 import BookApp from './bookApp.class.js';
 export default class UI {
     static render(booksArr) {
+        UI.clearContainer();
+        booksArr.forEach((bookObj) => UI.createAndAppendOneRow(bookObj));
+    }
+    static clearContainer() {
         const tabelBodyEl = document.getElementById('book-list');
         if (tabelBodyEl === null)
             return console.warn('nerastas tabelBodyEl ');
         tabelBodyEl.innerHTML = '';
-        booksArr.forEach((bookObj) => UI.createAndAppendOneRow(bookObj));
     }
     static createAndAppendOneRow(book) {
         const tabelBodyEl = document.getElementById('book-list');

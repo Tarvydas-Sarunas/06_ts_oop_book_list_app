@@ -19,8 +19,8 @@ export default class BookApp {
     // if (resetBtn === null) return console.warn('nerastas tabelBodyEl ');
     // // kuri paspaudus iskvies rendder
     // resetBtn.addEventListener('click', (e) => {
-    //   e.preventDefault;
-    //   UI.render;
+    //   e.preventDefault();
+    //   UI.render();
     // });
   }
 
