@@ -1,10 +1,6 @@
-import { BookIntereface } from '../interface/inteface.js';
+import { BookInterface } from '../interface/inteface.js';
 
-// Bool class
-export default class Book implements BookIntereface {
-  constructor(
-    public title: string,
-    public author: string,
-    public isbn: number
-  ) {}
+// Book Class aprasoma ir exportuojama is cia
+export default class Book implements BookInterface {
+  constructor(public title: string, public author: string, public isbn: number) {}
 }

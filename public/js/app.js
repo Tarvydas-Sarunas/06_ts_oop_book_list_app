@@ -1,21 +1,23 @@
 import Book from './class/book.class.js';
-import UI from './class/ui.class.js';
-console.log('Hello from ts');
-UI.showBooks();
-const b1 = new Book('Aplink pasauli', 'Z. Vernas', 542874);
-UI.addBook(b1);
-console.log('b1 ===', b1);
+import BookApp from './class/bookApp.class.js';
+import MyAlert from './class/myAlertClass.js';
+console.log('Hello from app.ts!111');
+BookApp.showBooks();
+const b1 = new Book('aplinkk pasauli', 'Z.Vernas', 542874);
+BookApp.addBook(b1);
 const formEl = document.getElementById('book-form');
+const titleEl = document.getElementById('title');
+const authorEl = document.getElementById('author');
+const isbnEl = document.getElementById('isbn');
 formEl === null || formEl === void 0 ? void 0 : formEl.addEventListener('submit', (event) => {
     event.preventDefault();
-    const titleEl = document.getElementById('title');
-    const authorEl = document.getElementById('author');
-    const isbnEl = document.getElementById('isbn');
-    const priceEl = document.getElementById('price');
-    if (!titleEl || !authorEl || !isbnEl || !priceEl)
-        return console.warn('toks elementas nerastas');
-    const newBook = new Book(titleEl.value, authorEl.value, +isbnEl.value);
+    if (!titleEl || !authorEl || !isbnEl)
+        return console.warn('nera input elemento/u');
+    if (titleEl.value.trim() === '' || authorEl.value.trim() === '' || isbnEl.value.trim() === '') {
+        new MyAlert('All fields required', 'danger');
+    }
+    const newBook = new Book(titleEl.value, authorEl.value, isbnEl.valueAsNumber);
     console.log('newBook ===', newBook);
-    UI.addBook(newBook);
+    BookApp.addBook(newBook);
 });
 //# sourceMappingURL=app.js.map

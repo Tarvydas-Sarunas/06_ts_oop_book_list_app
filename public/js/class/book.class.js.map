@@ -1,1 +1,1 @@
-{"version":3,"file":"book.class.js","sourceRoot":"","sources":["../../../src/class/book.class.ts"],"names":[],"mappings":"AAGA,MAAM,CAAC,OAAO,OAAO,IAAI;IACvB,YACS,KAAa,EACb,MAAc,EACd,IAAY;QAFZ,UAAK,GAAL,KAAK,CAAQ;QACb,WAAM,GAAN,MAAM,CAAQ;QACd,SAAI,GAAJ,IAAI,CAAQ;IAClB,CAAC;CACL"}
+{"version":3,"file":"book.class.js","sourceRoot":"","sources":["../../../src/class/book.class.ts"],"names":[],"mappings":"AAGA,MAAM,CAAC,OAAO,OAAO,IAAI;IACvB,YAAmB,KAAa,EAAS,MAAc,EAAS,IAAY;QAAzD,UAAK,GAAL,KAAK,CAAQ;QAAS,WAAM,GAAN,MAAM,CAAQ;QAAS,SAAI,GAAJ,IAAI,CAAQ;IAAG,CAAC;CACjF"}

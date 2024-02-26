@@ -6,11 +6,11 @@ export default class MyAlert {
         this.render();
     }
     render() {
-        const alertEl = createHtmlEL('div', { class: `alert alert-${this.type} my-alert position-absolute w-100 `, role: 'alert' }, this.message);
+        const alertEl = createHtmlEL('div', { class: `alert alert-${this.type} my-alert position-absolute w-100 t-0`, role: 'alert' }, this.message);
         document.body.prepend(alertEl);
         setTimeout(() => {
             alertEl.remove();
-        }, 2000);
+        }, 3000);
     }
 }
 //# sourceMappingURL=myAlertClass.js.map

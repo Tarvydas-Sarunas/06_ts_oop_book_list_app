@@ -1,17 +1,17 @@
-import { BookIntereface } from '../interface/inteface.js';
+import { BookInterface } from '../interface/inteface';
 
 export default class StoreBooks {
   private static storageKey: string = 'MyBooks';
 
-  public static getData(): BookIntereface[] {
-    const gotFromLStorage = localStorage.getItem(StoreBooks.storageKey);
-    if (!gotFromLStorage) return [];
+  public static getData(): BookInterface[] {
+    const gotFromStorage = localStorage.getItem(StoreBooks.storageKey);
+    if (!gotFromStorage) return [];
 
-    // atversti is json i []
-    return JSON.parse(gotFromLStorage);
+    // atversti is json i masyva
+    return JSON.parse(gotFromStorage);
   }
 
-  public static saveData(data: BookIntereface[]) {
+  public static saveData(data: BookInterface[]) {
     localStorage.setItem(StoreBooks.storageKey, JSON.stringify(data));
   }
 }

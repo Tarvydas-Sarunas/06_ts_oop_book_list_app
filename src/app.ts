@@ -1,45 +1,37 @@
+// import createHtmlEL from './createEl.js';
+
 import Book from './class/book.class.js';
-import UI from './class/ui.class.js';
-// import { BookIntereface } from './interface/inteface.js';
+import BookApp from './class/bookApp.class.js';
+import MyAlert from './class/myAlertClass.js';
 
-console.log('Hello from ts');
+console.log('Hello from app.ts!111');
 
-// const h1 = createHtmlEL<HTMLHeadingElement>(
-//   'h1',
-//   { class: 'title', href: '/' },
-//   'Hello world'
-// );
+BookApp.showBooks();
 
-// document.body.prepend(h1);
+const b1 = new Book('aplinkk pasauli', 'Z.Vernas', 542874);
 
-UI.showBooks();
-
-const b1 = new Book('Aplink pasauli', 'Z. Vernas', 542874);
-
-// UI.createAndAppendOneRow(b1);
-// UI.createAndAppendOneRow(b1);
-// UI.createAndAppendOneRow(b1);
-UI.addBook(b1);
-console.log('b1 ===', b1);
+BookApp.addBook(b1);
 
 // nusitaikom i forma
-const formEl = document.getElementById('book-form') as HTMLTableSectionElement | null;
-// dedam event listineri
+const formEl = document.getElementById('book-form') as HTMLFormElement | null;
+const titleEl = document.getElementById('title') as HTMLInputElement | null;
+const authorEl = document.getElementById('author') as HTMLInputElement | null;
+const isbnEl = document.getElementById('isbn') as HTMLInputElement | null;
+
+// dedam evet listeneri
 formEl?.addEventListener('submit', (event: SubmitEvent): void => {
   event.preventDefault();
-  const titleEl = document.getElementById('title') as HTMLInputElement | null;
-  const authorEl = document.getElementById('author') as HTMLInputElement | null;
-  const isbnEl = document.getElementById('isbn') as HTMLInputElement | null;
-  const priceEl = document.getElementById('price') as HTMLInputElement | null;
+  if (!titleEl || !authorEl || !isbnEl) return console.warn('nera input elemento/u');
 
-  // paimame reiksmes
-  if (!titleEl || !authorEl || !isbnEl || !priceEl) return console.warn('toks elementas nerastas');
-  const newBook = new Book(titleEl.value, authorEl.value, +isbnEl.value);
+  // TODO: validation
+
+  // darome mini validacija kad jei laukai neivesti
+  if (titleEl.value.trim() === '' || authorEl.value.trim() === '' || isbnEl.value.trim() === '') {
+    new MyAlert('All fields required', 'danger');
+  }
+  // sukuriam nauja knyga
+  const newBook = new Book(titleEl.value, authorEl.value, isbnEl.valueAsNumber);
   console.log('newBook ===', newBook);
-
-  // Todo.validation
-
-  // sukuriame nauja knyga
-  UI.addBook(newBook);
-  // issivalome inputus
+  // issivalom inputus
+  BookApp.addBook(newBook);
 });

@@ -1,12 +1,8 @@
-interface AtributsObjIf {
+interface AttrObj {
   [key: string]: string;
 }
 
-export default function createHtmlEL<T>(
-  tagName: HtmlTagName,
-  attrsObj: AtributsObjIf,
-  text: string | boolean = false
-): T {
+export default function createHtmlEL<T>(tagName: HtmlTagName, attrsObj: AttrObj, text: string | boolean = false): T {
   // kuriam el
   const newEl = document.createElement(tagName);
   // sudeti visus atributus
@@ -21,6 +17,8 @@ export default function createHtmlEL<T>(
   }
   return newEl as T;
 }
+
+// const h1 = createHtmlEL<HTMLHeadingElement>('span', { class: 'title', href: '/' }, 'Hello world');
 
 type HtmlTagName =
   | 'a'

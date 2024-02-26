@@ -1,83 +1,32 @@
 import createHtmlEL from '../helper/createEl.js';
-import { BookIntereface } from '../interface/inteface.js';
-import MyAlert from './myAlertClass.js';
+import { BookInterface } from '../interface/inteface.js';
+
+import BookApp from './bookApp.class.js';
 
 export default class UI {
-  private static booksArr: BookIntereface[] = [
-    {
-      title: 'Book One',
-      author: 'John Doe',
-      isbn: 3434434,
-    },
-    {
-      title: 'Book Two',
-      author: 'Jane Doe',
-      isbn: 111111,
-    },
-    {
-      title: 'Book Three',
-      author: 'Serbentautas Doe',
-      isbn: 222222,
-    },
-  ];
-
-  public static showBooks() {
-    UI.render();
+  public static render(booksArr: BookInterface[]): void {
+    // issivalom konteineri pries generuojant
+    const tabelBodyEl = document.getElementById('book-list') as HTMLTableSectionElement | null;
+    if (tabelBodyEl === null) return console.warn('nerastas tabelBodyEl ');
+    tabelBodyEl.innerHTML = '';
+    // sukti cikla per knygas
+    // surasyti jas i html
+    booksArr.forEach((bookObj) => UI.createAndAppendOneRow(bookObj));
   }
 
-  private static render(): void {
-    // isivalome pries generuojant
-    const tableBodyEl = document.getElementById('book-list') as HTMLTableSectionElement | null;
-    if (tableBodyEl === null) return console.warn('nerastas elementas');
-    tableBodyEl.innerHTML = '';
-    // sukti cikla per visas knygas ir surasyti jas i html
-    UI.booksArr.forEach((bObj) => UI.createAndAppendOneRow(bObj));
-  }
-
-  private static createAndAppendOneRow(book: BookIntereface): void {
-    const tableBodyEl = document.getElementById('book-list') as HTMLTableSectionElement | null;
+  private static createAndAppendOneRow(book: BookInterface): void {
+    const tabelBodyEl = document.getElementById('book-list') as HTMLTableSectionElement | null;
     const trEl = document.createElement('tr');
     const col1 = createHtmlEL<HTMLTableCellElement>('td', {}, book.title);
     const col2 = createHtmlEL<HTMLTableCellElement>('td', {}, book.author);
     const col3 = createHtmlEL<HTMLTableCellElement>('td', {}, book.isbn.toString());
     const col4 = createHtmlEL<HTMLTableCellElement>('td', {});
     const delBtn = createHtmlEL<HTMLButtonElement>('button', { class: 'btn btn-danger btn-sm' }, 'X');
-    delBtn.addEventListener('click', () => UI.deleteBook(book));
-    col4.append(delBtn);
+    delBtn.addEventListener('click', () => BookApp.deleteBook(book));
+    col4.appendChild(delBtn);
     trEl.append(col1, col2, col3, col4);
-    if (tableBodyEl === null) return console.warn('nerastas elementas');
-    tableBodyEl.append(trEl);
-  }
+    if (tabelBodyEl === null) return console.warn('nerastas tabelBodyEl ');
 
-  // TODO handle same id problem
-  public static addBook(book: BookIntereface): void {
-    const bookFind = UI.booksArr.find((bObj) => bObj.isbn === book.isbn);
-    if (bookFind) {
-      new MyAlert('Toks ISBN jau yra', 'warning');
-    } else {
-      UI.booksArr.push(book);
-      console.table(UI.booksArr);
-      UI.render();
-      new MyAlert('Add success', 'success');
-    }
-  }
-
-  private static deleteBook(book: BookIntereface): void {
-    console.log('book ===', book);
-    const isbnToDelele = book.isbn;
-
-    //  2 sugeneruoti sarasa is naujo
-    const istrinta = UI.booksArr.find((bObj) => bObj.isbn === isbnToDelele);
-
-    // 1 istrinti is musu knygu masyvo knyga kuri sutampa su book (isbn)
-    UI.booksArr = UI.booksArr.filter((bObj) => bObj.isbn !== isbnToDelele);
-
-    // iskviesti alert kad knyga istrinta
-    // Atspausdinti knygos title kuri istrinta atvaizduoti kokia knyga buvo istrinta su jos pavadinimu
-    if (!istrinta) return;
-    new MyAlert(`Book ${istrinta.title} delete success `, 'danger');
-
-    // atnaujinti sarasa
-    UI.render();
+    tabelBodyEl.append(trEl);
   }
 }

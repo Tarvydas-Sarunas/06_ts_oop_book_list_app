@@ -1,70 +1,27 @@
 import createHtmlEL from '../helper/createEl.js';
-import MyAlert from './myAlertClass.js';
-class UI {
-    static showBooks() {
-        UI.render();
-    }
-    static render() {
-        const tableBodyEl = document.getElementById('book-list');
-        if (tableBodyEl === null)
-            return console.warn('nerastas elementas');
-        tableBodyEl.innerHTML = '';
-        UI.booksArr.forEach((bObj) => UI.createAndAppendOneRow(bObj));
+import BookApp from './bookApp.class.js';
+export default class UI {
+    static render(booksArr) {
+        const tabelBodyEl = document.getElementById('book-list');
+        if (tabelBodyEl === null)
+            return console.warn('nerastas tabelBodyEl ');
+        tabelBodyEl.innerHTML = '';
+        booksArr.forEach((bookObj) => UI.createAndAppendOneRow(bookObj));
     }
     static createAndAppendOneRow(book) {
-        const tableBodyEl = document.getElementById('book-list');
+        const tabelBodyEl = document.getElementById('book-list');
         const trEl = document.createElement('tr');
         const col1 = createHtmlEL('td', {}, book.title);
         const col2 = createHtmlEL('td', {}, book.author);
         const col3 = createHtmlEL('td', {}, book.isbn.toString());
         const col4 = createHtmlEL('td', {});
         const delBtn = createHtmlEL('button', { class: 'btn btn-danger btn-sm' }, 'X');
-        delBtn.addEventListener('click', () => UI.deleteBook(book));
-        col4.append(delBtn);
+        delBtn.addEventListener('click', () => BookApp.deleteBook(book));
+        col4.appendChild(delBtn);
         trEl.append(col1, col2, col3, col4);
-        if (tableBodyEl === null)
-            return console.warn('nerastas elementas');
-        tableBodyEl.append(trEl);
-    }
-    static addBook(book) {
-        const bookFind = UI.booksArr.find((bObj) => bObj.isbn === book.isbn);
-        if (bookFind) {
-            new MyAlert('Toks ISBN jau yra', 'warning');
-        }
-        else {
-            UI.booksArr.push(book);
-            console.table(UI.booksArr);
-            UI.render();
-            new MyAlert('Add success', 'success');
-        }
-    }
-    static deleteBook(book) {
-        console.log('book ===', book);
-        const isbnToDelele = book.isbn;
-        const istrinta = UI.booksArr.find((bObj) => bObj.isbn === isbnToDelele);
-        UI.booksArr = UI.booksArr.filter((bObj) => bObj.isbn !== isbnToDelele);
-        if (!istrinta)
-            return;
-        new MyAlert(`Book ${istrinta.title} delete success `, 'danger');
-        UI.render();
+        if (tabelBodyEl === null)
+            return console.warn('nerastas tabelBodyEl ');
+        tabelBodyEl.append(trEl);
     }
 }
-UI.booksArr = [
-    {
-        title: 'Book One',
-        author: 'John Doe',
-        isbn: 3434434,
-    },
-    {
-        title: 'Book Two',
-        author: 'Jane Doe',
-        isbn: 111111,
-    },
-    {
-        title: 'Book Three',
-        author: 'Serbentautas Doe',
-        isbn: 222222,
-    },
-];
-export default UI;
 //# sourceMappingURL=ui.class.js.map

@@ -1,9 +1,9 @@
 class StoreBooks {
     static getData() {
-        const gotFromLStorage = localStorage.getItem(StoreBooks.storageKey);
-        if (!gotFromLStorage)
+        const gotFromStorage = localStorage.getItem(StoreBooks.storageKey);
+        if (!gotFromStorage)
             return [];
-        return JSON.parse(gotFromLStorage);
+        return JSON.parse(gotFromStorage);
     }
     static saveData(data) {
         localStorage.setItem(StoreBooks.storageKey, JSON.stringify(data));
