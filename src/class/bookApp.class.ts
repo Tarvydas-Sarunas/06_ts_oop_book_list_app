@@ -14,6 +14,14 @@ export default class BookApp {
 
   public static resetBooks() {
     // atstatyti knygas i pradini masyva
+    // nusitaikyti i btn reset jam duoti add event listineri
+    // const resetBtn = document.getElementById('reset') as HTMLButtonElement | null;
+    // if (resetBtn === null) return console.warn('nerastas tabelBodyEl ');
+    // // kuri paspaudus iskvies rendder
+    // resetBtn.addEventListener('click', (e) => {
+    //   e.preventDefault;
+    //   UI.render;
+    // });
   }
 
   public static addBook(book: BookInterface): void {

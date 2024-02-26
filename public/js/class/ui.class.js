@@ -14,11 +14,12 @@ export default class UI {
         const col1 = createHtmlEL('td', {}, book.title);
         const col2 = createHtmlEL('td', {}, book.author);
         const col3 = createHtmlEL('td', {}, book.isbn.toString());
-        const col4 = createHtmlEL('td', {});
+        const col4 = createHtmlEL('td', {}, book.price ? book.price.toString() : '0');
+        const col5 = createHtmlEL('td', {});
         const delBtn = createHtmlEL('button', { class: 'btn btn-danger btn-sm' }, 'X');
         delBtn.addEventListener('click', () => BookApp.deleteBook(book));
-        col4.appendChild(delBtn);
-        trEl.append(col1, col2, col3, col4);
+        col5.appendChild(delBtn);
+        trEl.append(col1, col2, col3, col4, col5);
         if (tabelBodyEl === null)
             return console.warn('nerastas tabelBodyEl ');
         tabelBodyEl.append(trEl);
