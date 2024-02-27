@@ -1,5 +1,5 @@
 import { BookInterface } from '../interface/inteface.js';
-import MyAlert from './myAlertClass.js';
+import MyAlert, { SuccessAlert } from './myAlertClass.js';
 import StoreBooks from './storeBooks.js';
 
 import UI from './ui.class.js';
@@ -9,7 +9,7 @@ export default class BookApp {
 
   public static showBooks() {
     UI.render(BookApp.booksArr);
-    new MyAlert('Books loaded', 'success');
+    new SuccessAlert('Books loaded');
   }
 
   public static resetBooks() {

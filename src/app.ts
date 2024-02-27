@@ -2,7 +2,7 @@
 
 import Book from './class/book.class.js';
 import BookApp from './class/bookApp.class.js';
-import MyAlert from './class/myAlertClass.js';
+import MyAlert, { PermanentAlert } from './class/myAlertClass.js';
 
 console.log('Hello from app.ts!111');
 
@@ -28,7 +28,7 @@ formEl?.addEventListener('submit', (event: SubmitEvent): void => {
 
   // darome mini validacija kad jei laukai neivesti
   if (titleEl.value.trim() === '' || authorEl.value.trim() === '' || isbnEl.value.trim() === '' || priceEl.value.trim() === '') {
-    new MyAlert('All fields required', 'danger');
+    new PermanentAlert('All fields required');
   }
   // sukuriam nauja knyga
   const newBook = new Book(titleEl.value, authorEl.value, isbnEl.valueAsNumber, priceEl.valueAsNumber);
